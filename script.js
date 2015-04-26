@@ -50,6 +50,7 @@ app.controller('Ctrl', ['$scope','$resource','$http', function($scope,$resource,
       }
 
       var comment = $scope.comments[curIdx].data.body
+        .replace(/\b(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?\b/g,'link')
       if (window.speechSynthesis !== undefined) {
         if ($scope.continuous) {
           nativetts(comment,function(){
