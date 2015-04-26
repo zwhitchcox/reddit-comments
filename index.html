@@ -57,7 +57,12 @@ ga('send', 'pageview');
       <div class="form-group">
         <input ng-model="custsub" type="text" placeholder="Custom Subreddit">
       </div>
-      <button ng-click="getTitles(custsub)" class="btn btn-default">Go</button>
+      <button ng-click="getTitles(custsub)" class="btn btn-sm btn-default">Go</button>
+       or
+      <div class="form-group">
+        <input ng-model="postid" type="text" placeholder="Post Id">
+      </div>
+      <button ng-click="getComments(postid)" class="btn btn-sm btn-default">Go</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
