@@ -1,30 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+  <style>
+  .first {
+    background:#FCC;
+    padding:12px;
+    border-radius: 3px;
+  }
+  .title {
+    cursor: pointer
+  }
+  .ad {
+    position:fixed;
+    bottom:0;
+  }
+  </style>
   <!-- SCROLLS -->
   <!-- load bootstrap and fontawesome via CDN -->
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/css/bootstrap3/bootstrap-switch.min.css" />
   <!-- SPELLS -->
   <!-- load angular and angular route via CDN -->
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.0/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+  <script src="https://code.angularjs.org/1.2.16/angular-resource.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/3.3.2/js/bootstrap-switch.min.js"></script>
   <script src="script.js"></script>
 </head>
 <body ng-app="app">
 <div ng-controller="Ctrl">
 <header>
-  <nav class="navbar navbar-default">
+  <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand">App</a>
+        <a class="navbar-brand">Ask Science</a>
       </div>
+      <ul class="nav navbar-nav">
+        <li><a class="btn" ng-click="stop()"><i class='glyphicon glyphicon-stop'></i></a></li>
+      </ul>
+      <form class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input ng-model="custsub" type="text" placeholder="Custom Subreddit">
+      </div>
+      <button ng-click="getTitles(custsub)" class="btn btn-default">Go</button>
+      </form>
+
+        </li>
+      </ul>
     </div><!--/.container-fluid -->
   </nav>
 </header>
-<div class="container">
+<div class="container" style="margin-top:70px">
+  <h1>TTS Comments of first 100 /r/{{custsub}} posts</h1>
+  <div class="first" ng-show="firstTime">Just click the title to start reading comments!</div>
+  <div ng-repeat="title in titles track by $index">
+    <p ng-class="title.titleClass">
+    <span ng-click="getComments(title.data.id)" class="title">
+    <b>{{title.data.title}}</b>
+    </span>
+    <br>
+    <a target=_blank ng-href="http://reddit.com/{{title.data.permalink}}">permalink</a>
+    </p>
+    <br>
+  </div>
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  <!-- reddit-jokes -->
+  <div class="ad">
+  <ins class="adsbygoogle"
+       style="display:inline-block;width:728px;height:90px"
+       data-ad-client="ca-pub-5931961133736315"
+       data-ad-slot="3353560659"></ins>
+  </div>
+  <script>
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
 </div>
 </div>
+
 </body>
 </html>
